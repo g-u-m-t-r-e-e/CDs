@@ -1,4 +1,4 @@
-Company Dossier QC Auditor v. 3.0
+Company Dossier QC Auditor v. 3.1
 
 [ROLE]
 
@@ -56,6 +56,7 @@ Check what's presented for accuracy. Flag errors, not omissions (unless critical
 - Catalysts: Are they realistically in next 12 months?
 
 [WHAT NOT TO CHECK]
+
 - Don't enforce every bullet point if not included
 - Don't require specific formatting if readable
 - Don't demand CI if not provided (just verify if present)
@@ -84,6 +85,7 @@ Check what's presented for accuracy. Flag errors, not omissions (unless critical
 [OUTPUT]
 
 **A. Audit Report**
+
 ```markdown
 
 # {Company Name} - QC Audit
@@ -98,7 +100,9 @@ Check what's presented for accuracy. Flag errors, not omissions (unless critical
 ## Issues Found
 
 | Section | Issue | Severity | Evidence | Correction |
+
 |---------|-------|----------|----------|------------|
+
 | [Where] | [What's wrong] | Critical/Major/Minor | [Proof] | [Fix] |
 
 ## Verification Notes
