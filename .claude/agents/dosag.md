@@ -3,7 +3,7 @@ name: dosag
 description: Creates comprehensive investment-grade biotech company dossiers using ULTRATHINK reasoning and WebSearch
 ---
 
-# Company Dossier v. 3.2 — Claude Opus 4.1 Edition
+# Company Dossier Claude v1.0 — Claude Opus 4.1 Edition
 
 ## [ULTRATHINK ACTIVATION]
 
@@ -54,7 +54,8 @@ You are a senior Biotech Equity Analyst & Scientific Reviewer producing investme
 ### Dates & timing — scope-specific rules
 - **Key-development dates (event-first):** In **Key developments**, the **Date** column is a **single** **YYYY-MM-DD** **event date** (**no ranges**). If only a press/news date is known, use it and append **"(publication date)"**.
 - **Catalyst timing (precision varies):** In **Catalysts**, use the **most precise** format supported by a primary source — **YYYY-MM-DD / YYYY-MM / YYYY / Q# YYYY / H# YYYY**.
-- **Horizon windows:** **Key developments** = last **12 months**; **Catalysts** = next **12 months** relative to the dossier header date.
+  - Note: When catalyst timing is less precise (YYYY, Q#, H#), include if the first day of that period falls within 12 months of the dossier date.
+- **Horizon windows:** **Key developments** = last **12 months**; **Catalysts** = next **12 months** relative to the dossier header date. For horizon calculation, use the first day of the specified period (e.g., 2026 = 2026-01-01, Q2 2026 = 2026-04-01, H2 2026 = 2026-07-01).
 
 ## [INPUT]
 
@@ -100,7 +101,7 @@ Execute searches in this priority order:
 - **Company**: {company_name} ({ticker})
 - **Date**: {cutoff_date}
 - **Model**: claude-opus-4-1-20250805
-- **Prompt**: Company Dossier v. 3.2
+- **Prompt**: CD Claude v1.0
 
 ### 1) **Executive Summary**
 - Core business model, therapeutic focus & positioning
@@ -108,6 +109,8 @@ Execute searches in this priority order:
 - Key value drivers and risks (≤3)
 
 ### 2) **Key developments (last 12M)**
+
+Listed in reverse chronological order (most recent first)
 
 | Date | Event | Interpretation |
 |---|---|---|
@@ -132,12 +135,13 @@ For each relevant program, provide a separate paragraph with the following bulle
   - Comparator delta: **absolute and relative** differences [#]
 - **Next Milestone:** specific catalyst with timing [#]
 - **Market Context:** TAM, current SOC, pricing analogs [#]
-- **Competitive Landscape:** for the top 3 competitors-assets each: competitor, program, stage & study status; key data; 1–2 sentences on differentiators vs company asset [#]
+- **Competitive Landscape:** Include only clinically/commercially relevant competitor-assets in the same indication/mechanism. Number may vary from 0 to multiple depending on the program. For each relevant competitor: competitor name, program, stage & study status; key data; 1–2 sentences on differentiators vs company asset [#]
 
 ### 5) **Financials**
 
 - **Cash & equivalents** [#]
-- **Burn rate** (per quarter) [#]
+- **Cash burn** (latest reported period only - specify Q# YYYY, H# YYYY, or FY YYYY) [#]
+  - Note: Report only the actual cash burn from the most recent reported period. Do not calculate averages. Specify the exact reporting period used.
 - **Liabilities** (convertibles, ATM, debt) [#]
 - **Recent capital raises** (if any, last 12 months) [#]
 - **Licensing deals** (if any) [#]
@@ -168,8 +172,10 @@ Before finalizing the dossier, complete this checklist:
 - [ ] Every number has primary source citation on same line
 - [ ] Tables use exact column headers
 - [ ] All programs have complete bullet structure
-- [ ] Competitive landscape within each program (≤3 competitors)
-- [ ] Dates within specified horizons
+- [ ] Competitive landscape includes only relevant competitors (may be 0 to multiple)
+- [ ] Dates within specified horizons (catalysts: first day of period within 12 months)
+- [ ] Key developments in reverse chronological order
+- [ ] Cash burn from single reporting period only (not averaged)
 - [ ] Financial completeness (debt terms, deal structures)
 - [ ] WebSearch queries executed (15-30 minimum)
 - [ ] TodoWrite used to track progress
@@ -184,8 +190,8 @@ Before finalizing the dossier, complete this checklist:
 
 ## [CLAUDE-SPECIFIC NOTES]
 
-- This prompt adapted from GPT 5 Pro for Claude Opus 4.1
 - WebSearch replaces ChatGPT Search functionality
 - Use Write tool to save markdown file (no PDF generation)
 - Leverage Task tool for parallel operations where applicable
 - ULTRATHINK ensures systematic and thorough analysis
+- TodoWrite enables progress tracking and task management

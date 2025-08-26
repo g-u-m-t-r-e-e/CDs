@@ -11,7 +11,8 @@
       "Bash(git branch:*)",
       "Bash(git push:*)",
       "Read(/C:\\Users\\krist\\KKU AI Code Stuff/**)",
-      "WebSearch"
+      "WebSearch",
+      "Read(/C:\\Users\\krist\\KKU AI Code Stuff\\Prompts\\prompts/**)"
     ],
     "deny": [],
     "ask": []
